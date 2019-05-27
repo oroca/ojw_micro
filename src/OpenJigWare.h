@@ -14,5 +14,6 @@
 
 #include "CTimer.h"
 #include "CMonster.h"
+#include "CMotion.h"
 
 #endif 
