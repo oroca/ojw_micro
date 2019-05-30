@@ -251,17 +251,9 @@ bool CMotion::MotionGetTable(SMotionDB_t *pMotion, uint16_t tableIndex)
       nData |= PROG_MEM(pData[nPos+1]) << 8;
       nPos += 2;
 
-      sData = (short)(nData & 0x0fff);
-      if ((sData & 0x800) != 0) sData -= 0x1000;
+      sData = (short)nData;
 
-      pMotion->STable.pnLed[nAxis]  = (uint8_t)((nData >> 12) & 0x07);
-      pMotion->STable.pbType[nAxis] = (bool)(((nData & 0x8000) != 0) ? true : false);
-      pMotion->STable.pbEn[nAxis]   = (bool)((sData == 0x7ff) ? false : true);
-
-      if (sData == 0x7ff)
-        pMotion->STable.pnMot[nAxis] = 0;
-      else
-        pMotion->STable.pnMot[nAxis] = sData;
+      pMotion->STable.pnMot[nAxis] = sData;
     }
   }
 
